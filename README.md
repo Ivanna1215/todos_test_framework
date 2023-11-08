@@ -10,10 +10,10 @@ Install dependencies by running: npm install
 
 ## Execution
 ### Build and open Cypress Test Runner
-1. Install dependencies within the project directory (allo folder on your local)
+1. Install dependencies within the project directory (todo folder on your local)
     `npm install`
 
-2. Modify the cypress.config.js file to use 'https://allo.ua/' as the baseUrl
+2. Modify the cypress.config.js file to use 'https://todomvc.com/examples/react/#/ ' as the baseUrl
 3. Execute cypress on your local: 
 
      `npm run cy:open`
@@ -21,10 +21,12 @@ Install dependencies by running: npm install
 4. After the Cypress Test Runner application loads, you can select some or all test specs to be executed.
 
 ### Running headless cypress that generates reports
-1. Modify the cypress.config.js file to use 'https://allo.ua/' as the baseUrl
+1. Modify the cypress.config.js file to use 'https://todomvc.com/examples/react/#/ ' as the baseUrl
 2. Execute cypress automated tests in headless mode: 
 
      `npm run cy:run`
+
+3. After tests have finished, you can find the report generated in the cypress/reports folder e.g. cypress/reports/html/index.html
      
 
 ### Useful Information:

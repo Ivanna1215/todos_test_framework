@@ -9,26 +9,26 @@ class TodoPage {
 
     addNewTask(option) {
         cy.get(selectors.newTodoInput).click().clear().type(option).type('{enter}')
-        return this
+        return this;
     }
 
     checkTask() {
         cy.get(selectors.toggleCheckbox).eq(0).check()
-        return this
+        return this;
     }
 
     deleteTask() {
         cy.get(selectors.destroyButton)
             .invoke('show')
             .click();
-        return this
+        return this;
     }
 
     deleteAllTasks() {
         cy.get(selectors.body).find('section').then(($section) => {
             if ($section.length > 1) {
                 cy.get(selectors.todoListLi).each(($el) => {
-                        this.deleteTask();             
+                    this.deleteTask();
                 })
             }
             else {
@@ -36,63 +36,41 @@ class TodoPage {
             }
         })
 
-        return this
+        return this;
     }
 
     clickActiveFilter() {
         cy.contains(selectors.a, selectors.active).click();
-        return this
+        return this;
     }
-    
+
     clickCompletedFilter() {
         cy.contains(selectors.a, selectors.completed).click();
-        return this
+        return this;
     }
-    
+
     clickAllFilter() {
         cy.contains(selectors.a, selectors.all).click();
-        return this
-    }
-    
-    verifyTaskCount(count) {
-        cy.get(selectors.todoListLi).should('have.length', count);
-        return this
+        return this;
     }
 
     checkFilter(taskCompleted, taskActive) {
         this.clickActiveFilter();
         this.verifyTaskCount(1);
         this.verifyPageText('have', [taskActive]);
-    
+
         this.clickCompletedFilter();
         this.verifyTaskCount(1);
         this.verifyPageText('have', [taskCompleted]);
-    
+
         this.clickAllFilter();
         this.verifyTaskCount(2);
         this.verifyPageText('have', [taskActive, taskCompleted]);
-    
+
         return this;
     }
-    
-    
-    
-    
-    
 
-
-    // checkFilter(taskCompleted, taskActive) {
-    //     cy.contains(selectors.a, 'Active').click();
-    //     cy.get(selectors.todoListLi).should('have.length', 1);
-    //     this.verifyPageText('have', [taskActive])
-    //     cy.contains(selectors.a, 'Completed').click();
-    //     cy.get(selectors.todoListLi).should('have.length', 1);
-    //     this.verifyPageText('have', [taskCompleted])
-    //     cy.contains(selectors.a, 'All').click();
-    //     cy.get(selectors.todoListLi).should('have.length', 2);
-    //     this.verifyPageText('have', [taskActive, taskCompleted])
-    //     return this
-    // }
+    //region Validation
 
     verifyPageIsOpened(url) {
         cy.wait(1500).url().should('include', url);
@@ -102,15 +80,14 @@ class TodoPage {
     verifyTask(option) {
         cy.get(selectors.todoListLi)
             .should('have.text', option);
-        return this
+        return this;
     }
 
     verifyIsTaskCheck(option) {
         cy.contains(selectors.Li, option).then(($el) => {
             cy.wrap($el).should('have.class', selectors.classCompleted)
         })
-
-        return this
+        return this;
     }
 
     verifyPageText(action, textArray) {
@@ -128,13 +105,18 @@ class TodoPage {
     }
 
     verifyElementContainsText(element, text) {
-        cy.get(element).should('contain', text);
-        return this
+        cy.containsVisible(element, text);
+        return this;
     }
 
     verifyElementNotContainsText(element, text) {
         cy.get(element).should('not.contain', text);
-        return this
+        return this;
+    }
+
+    verifyTaskCount(count) {
+        cy.get(selectors.todoListLi).should('have.length', count);
+        return this;
     }
 
 }
