@@ -14,9 +14,18 @@ module.exports = defineConfig({
   experimentalMemoryManagement: true,
   screenshotsFolder: 'cypress/reports/screenshots',
   videosFolder: 'cypress/reports/videos',
+  reporter: 'cypress-mochawesome-reporter',
+  reporterOptions: {
+    charts: true,
+    reportPageTitle: 'ToDo report',
+    embeddedScreenshots: true,
+    inlineAssets: true,
+    saveAllAttempts: false,
+  },
   e2e: {
     setupNodeEvents(on, config) {
       // implement node event listeners here
+      require('cypress-mochawesome-reporter/plugin')(on);
     },
     testIsolation: false,
     baseUrl: 'https://todomvc.com/examples/react/#/',

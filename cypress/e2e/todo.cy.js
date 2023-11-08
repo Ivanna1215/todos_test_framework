@@ -9,27 +9,27 @@ describe('Test task for TODO MVC', function () {
             .deleteAllTasks()
     })
 
-    it('Add first task', () => {
+    it('Add new task. Verify new task', () => {
         todoPage
             .addNewTask(testData.taskNameFirst)
             .verifyTask(testData.taskNameFirst)
     })
 
-    it('Add second task', () => {
+    it('Add new task. Mark task as completed', () => {
         todoPage
             .addNewTask(testData.taskNameFirst)
             .checkTask()
             .verifyIsTaskCheck(testData.taskNameFirst)
     })
 
-    it('Add third task. Delete task', () => {
+    it('Add new task. Delete task.', () => {
         todoPage
             .addNewTask(testData.taskNameFirst)
             .deleteTask()
             .verifyPageText('notHave', [testData.taskNameFirst])
     })
 
-    it('Check filter', () => {
+    it('Filter tasks by status', () => {
         todoPage
             .addNewTask(testData.taskNameFirst)
             .checkTask()

@@ -1,6 +1,14 @@
 {
+  "name": "todo_project",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "cy:run": "cypress run",
+    "cy:open": "cypress open"
+  },
   "devDependencies": {
-    "cypress": "^13.4.0"
+    "cypress": "^13.4.0",
+    "cypress-mochawesome-reporter": "^3.6.1"
   },
   "dependencies": {
     "faker": "^5.5.3"
